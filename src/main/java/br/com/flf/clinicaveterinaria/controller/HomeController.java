@@ -10,6 +10,6 @@ public class HomeController {
 
 	@GetMapping
 	public String home() {
-		return "Olá, seja bem vindo a Clínica Veterinária. Aqui o seu pet terá o melhor tratamento!";
+		return "Olá, seja bem vindo à Clínica Veterinária. Aqui o seu pet terá o melhor tratamento!";
 	}
 }
