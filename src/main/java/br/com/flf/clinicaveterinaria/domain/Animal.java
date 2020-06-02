@@ -1,40 +1,41 @@
 package br.com.flf.clinicaveterinaria.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import br.com.flf.clinicaveterinaria.domain.enums.TipoSex;
 
-@Entity
-@Table(name = "especies")
-public class Especie implements Serializable {
+public class Animal implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private String nome;
 	
-	@OneToMany(mappedBy = "especie")
-	@JsonIgnore
-	private List<Animal> animais = new ArrayList<>();
+	private String nome;
+	private int idade;
+	private int sex;
 
-	public Especie() {
+	@ManyToOne
+	@JoinColumn(name = "especie_id")
+	private Especie especie;
+
+	public Animal() {
 	}
 
-	public Especie(Integer id, String nome) {
+	public Animal(Integer id, String nome, int idade, TipoSex sex, Especie especie) {
 		super();
 		this.id = id;
 		this.nome = nome;
+		this.idade = idade;
+		this.sex = sex.getCodigo();
+		this.especie = especie;
 	}
 
 	public Integer getId() {
@@ -53,12 +54,28 @@ public class Especie implements Serializable {
 		this.nome = nome;
 	}
 
-	public List<Animal> getAnimais() {
-		return animais;
+	public int getIdade() {
+		return idade;
 	}
 
-	public void setAnimais(List<Animal> animais) {
-		this.animais = animais;
+	public void setIdade(int idade) {
+		this.idade = idade;
+	}
+
+	public TipoSex getSex() {
+		return TipoSex.toEnum(sex);
+	}
+
+	public void setSex(TipoSex sex) {
+		this.sex = sex.getCodigo();
+	}
+
+	public Especie getEspecie() {
+		return especie;
+	}
+
+	public void setEspecie(Especie especie) {
+		this.especie = especie;
 	}
 
 	@Override
@@ -77,7 +94,7 @@ public class Especie implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Especie other = (Especie) obj;
+		Animal other = (Animal) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
