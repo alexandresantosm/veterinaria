@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.com.flf.clinicaveterinaria.domain.Animal;
 import br.com.flf.clinicaveterinaria.domain.Cliente;
+import br.com.flf.clinicaveterinaria.domain.Consulta;
 import br.com.flf.clinicaveterinaria.domain.Especie;
 import br.com.flf.clinicaveterinaria.domain.Veterinario;
 import br.com.flf.clinicaveterinaria.domain.enums.TipoSex;
@@ -16,6 +17,7 @@ import br.com.flf.clinicaveterinaria.repository.AnimalRepository;
 import br.com.flf.clinicaveterinaria.repository.ClienteRepository;
 import br.com.flf.clinicaveterinaria.repository.EspecieRepository;
 import br.com.flf.clinicaveterinaria.repository.VeterinarioRepository;
+import br.com.flf.clinicaveterinaria.utils.FormataDataHora;
 
 @SpringBootApplication
 public class SistemaClinicaVeterinariaApplication implements CommandLineRunner {
@@ -37,6 +39,9 @@ public class SistemaClinicaVeterinariaApplication implements CommandLineRunner {
 	
 	@Autowired
 	ClienteRepository clienteRepository;
+	
+	@Autowired
+	ConsultaRepository consultaRepository;
 	
 	@Override
 	public void run(String... args) throws Exception {
@@ -68,6 +73,13 @@ public class SistemaClinicaVeterinariaApplication implements CommandLineRunner {
 		Veterinario v3 = new Veterinario(null, "Juciel Filho", "3434999-21");
 		
 		veterinarioRepository.saveAll(Arrays.asList(v1,v2,v3));
+		
+		Consulta con1 = new Consulta(null, new FormataDataHora("05/05/2020 13:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Exame urina", a1, v1);
+		Consulta con2 = new Consulta(null, new FormataDataHora("05/12/2019 10:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Raio-X tórax", a2, v1);
+		Consulta con3 = new Consulta(null, new FormataDataHora("25/05/2020 09:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Vacina gripe", a3, v2);
+		Consulta con4 = new Consulta(null, new FormataDataHora("05/11/2018 14:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Cirurgia rabo", a4, v3);
+		
+		consultaRepository.saveAll(Arrays.asList(con1,con2,con3,con4));
 	}
 
 }
