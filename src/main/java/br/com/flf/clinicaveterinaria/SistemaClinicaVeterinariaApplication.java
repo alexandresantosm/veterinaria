@@ -37,9 +37,9 @@ public class SistemaClinicaVeterinariaApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		Especie esp1 = new Especie(null, "Felino");
 		Especie esp2 = new Especie(null, "Canis");
-
-		especieRepository.saveAll(Arrays.asList(esp1,esp2));
 		
+		especieRepository.saveAll(Arrays.asList(esp1,esp2));
+
 		Animal a1 = new Animal(null, "Felix", 3, TipoSex.MACHO, esp1);
 		Animal a2 = new Animal(null, "Tico", 2, TipoSex.FÊMEA, esp1);
 		Animal a3 = new Animal(null, "Cicarelle", 5, TipoSex.FÊMEA, esp2);
