@@ -15,6 +15,7 @@ import br.com.flf.clinicaveterinaria.domain.Veterinario;
 import br.com.flf.clinicaveterinaria.domain.enums.TipoSex;
 import br.com.flf.clinicaveterinaria.repository.AnimalRepository;
 import br.com.flf.clinicaveterinaria.repository.ClienteRepository;
+import br.com.flf.clinicaveterinaria.repository.ConsultaRepository;
 import br.com.flf.clinicaveterinaria.repository.EspecieRepository;
 import br.com.flf.clinicaveterinaria.repository.VeterinarioRepository;
 import br.com.flf.clinicaveterinaria.utils.FormataDataHora;
