@@ -1,50 +1,44 @@
 package br.com.flf.clinicaveterinaria.domain;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import br.com.flf.clinicaveterinaria.domain.enums.TipoSex;
-
 @Entity
-public class Animal implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+@Table(name = "clientes")
+public class Cliente {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
-	private String nome;
-	private int idade;
-	private int sex;
-
-	@ManyToOne
-	@JoinColumn(name = "especie_id")
-	@JsonIgnore
-	private Especie especie;
 	
-	@ManyToOne
-	@JoinColumn(name = "dono_id")
-	private Cliente dono;
+	private String nome;
+	private String end;
+	private String tel;
+	private String email;
+	
+	@OneToMany(mappedBy = "dono")
+	@JsonIgnore
+	private List<Animal> pets = new ArrayList<>();
 
-	public Animal() {
+	public Cliente() {
 	}
 
-	public Animal(Integer id, String nome, int idade, TipoSex sex, Especie especie) {
+	public Cliente(Integer id, String nome, String end, String tel, String email) {
 		super();
 		this.id = id;
 		this.nome = nome;
-		this.idade = idade;
-		this.sex = sex.getCodigo();
-		this.especie = especie;
+		this.end = end;
+		this.tel = tel;
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -63,36 +57,36 @@ public class Animal implements Serializable {
 		this.nome = nome;
 	}
 
-	public int getIdade() {
-		return idade;
+	public String getEnd() {
+		return end;
 	}
 
-	public void setIdade(int idade) {
-		this.idade = idade;
+	public void setEnd(String end) {
+		this.end = end;
 	}
 
-	public TipoSex getSex() {
-		return TipoSex.toEnum(sex);
+	public String getTel() {
+		return tel;
 	}
 
-	public void setSex(TipoSex sex) {
-		this.sex = sex.getCodigo();
+	public void setTel(String tel) {
+		this.tel = tel;
 	}
 
-	public Especie getEspecie() {
-		return especie;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setEspecie(Especie especie) {
-		this.especie = especie;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public Cliente getDono() {
-		return dono;
+	public List<Animal> getPets() {
+		return pets;
 	}
 
-	public void setDono(Cliente dono) {
-		this.dono = dono;
+	public void setPets(List<Animal> pets) {
+		this.pets = pets;
 	}
 
 	@Override
@@ -111,7 +105,7 @@ public class Animal implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Animal other = (Animal) obj;
+		Cliente other = (Cliente) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
