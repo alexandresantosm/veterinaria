@@ -81,6 +81,15 @@ public class SistemaClinicaVeterinariaApplication implements CommandLineRunner {
 		Consulta con4 = new Consulta(null, new FormataDataHora("05/11/2018 14:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Cirurgia rabo", a4, v3);
 		
 		consultaRepository.saveAll(Arrays.asList(con1,con2,con3,con4));
+		
+		a1.getHistorico().add(con1);
+		a2.getHistorico().add(con2);
+		a3.getHistorico().add(con3);
+		a4.getHistorico().add(con4);
+		
+		v1.getConsultas().add(con1);
+		v2.getConsultas().addAll(Arrays.asList(con2,con3));
+		v3.getConsultas().add(con4);
 	}
 
 }
