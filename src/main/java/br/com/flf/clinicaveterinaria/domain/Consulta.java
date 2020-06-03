@@ -1,47 +1,50 @@
 package br.com.flf.clinicaveterinaria.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "clientes")
-public class Cliente implements Serializable {
+public class Consulta implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	private String nome;
+	private Date data;
 	private String end;
-	private String tel;
-	private String email;
+	private String procedimento;
 	
-	@OneToMany(mappedBy = "dono")
+	@ManyToOne
+	@JoinColumn(name = "animal_id")
 	@JsonIgnore
-	private List<Animal> pets = new ArrayList<>();
+	private Animal animal;
+	
+	@ManyToOne
+	@JoinColumn(name = "veterinario_id")
+	@JsonIgnore
+	private Veterinario veterinario;
 
-	public Cliente() {
+	public Consulta() {
 	}
 
-	public Cliente(Integer id, String nome, String end, String tel, String email) {
+	public Consulta(Integer id, Date data, String end, String procedimento, Animal animal, Veterinario veterinario) {
 		super();
 		this.id = id;
-		this.nome = nome;
+		this.data = data;
 		this.end = end;
-		this.tel = tel;
-		this.email = email;
+		this.procedimento = procedimento;
+		this.animal = animal;
+		this.veterinario = veterinario;
 	}
 
 	public Integer getId() {
@@ -52,12 +55,12 @@ public class Cliente implements Serializable {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public Date getData() {
+		return data;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 	public String getEnd() {
@@ -68,28 +71,28 @@ public class Cliente implements Serializable {
 		this.end = end;
 	}
 
-	public String getTel() {
-		return tel;
+	public String getProcedimento() {
+		return procedimento;
 	}
 
-	public void setTel(String tel) {
-		this.tel = tel;
+	public void setProcedimento(String procedimento) {
+		this.procedimento = procedimento;
 	}
 
-	public String getEmail() {
-		return email;
+	public Animal getAnimal() {
+		return animal;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setAnimal(Animal animal) {
+		this.animal = animal;
 	}
 
-	public List<Animal> getPets() {
-		return pets;
+	public Veterinario getVeterinario() {
+		return veterinario;
 	}
 
-	public void setPets(List<Animal> pets) {
-		this.pets = pets;
+	public void setVeterinario(Veterinario veterinario) {
+		this.veterinario = veterinario;
 	}
 
 	@Override
@@ -108,7 +111,7 @@ public class Cliente implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cliente other = (Cliente) obj;
+		Consulta other = (Consulta) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

@@ -1,11 +1,14 @@
 package br.com.flf.clinicaveterinaria.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,6 +24,9 @@ public class Veterinario implements Serializable {
 	
 	private String nome;
 	private String CRMV;
+	
+	@OneToMany(mappedBy = "veterinario")
+	private List<Consulta> consultas = new ArrayList<>();
 
 	public Veterinario() {
 	}
@@ -54,6 +60,14 @@ public class Veterinario implements Serializable {
 
 	public void setCRMV(String CRMV) {
 		this.CRMV = CRMV;
+	}
+
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
+
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
 	}
 
 	@Override
