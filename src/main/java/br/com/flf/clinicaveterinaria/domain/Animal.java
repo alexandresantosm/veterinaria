@@ -38,13 +38,14 @@ public class Animal implements Serializable {
 	public Animal() {
 	}
 
-	public Animal(Integer id, String nome, int idade, TipoSex sex, Especie especie) {
+	public Animal(Integer id, String nome, int idade, TipoSex sex, Especie especie, Cliente dono) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.idade = idade;
 		this.sex = sex.getCodigo();
 		this.especie = especie;
+		this.dono = dono;
 	}
 
 	public Integer getId() {
