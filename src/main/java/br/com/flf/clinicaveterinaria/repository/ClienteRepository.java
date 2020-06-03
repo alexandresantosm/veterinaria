@@ -7,5 +7,5 @@ import br.com.flf.clinicaveterinaria.domain.Cliente;
 
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
-
+	
 }
