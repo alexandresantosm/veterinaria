@@ -9,27 +9,27 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.flf.clinicaveterinaria.domain.Animal;
-import br.com.flf.clinicaveterinaria.service.AnimalService;
+import br.com.flf.clinicaveterinaria.domain.Consulta;
+import br.com.flf.clinicaveterinaria.service.ConsultaService;
 
 @RestController
-@RequestMapping("/animais")
-public class AnimalController {
+@RequestMapping("/consultas")
+public class ConsultaController {
 
 	@Autowired
-	private AnimalService animalService;
+	private ConsultaService consultaService;
 	
 	@GetMapping
-	public ResponseEntity<List<Animal>> list() {
-		List<Animal> animais = animalService.list();
+	public ResponseEntity<List<Consulta>> list() {
+		List<Consulta> consultas = consultaService.list();
 		
-		return ResponseEntity.ok(animais);
+		return ResponseEntity.ok(consultas);
 	}
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Animal> find(@PathVariable Integer id) {
-		Animal animal = animalService.find(id);
+	public ResponseEntity<Consulta> find(@PathVariable Integer id) {
+		Consulta consulta = consultaService.find(id);
 		
-		return ResponseEntity.ok(animal);
+		return ResponseEntity.ok(consulta);
 	}
 }
