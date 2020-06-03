@@ -8,16 +8,10 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FormataDataHora {
-	
-	private String dataHora;
-	
-	public FormataDataHora(String dataHora) {
-		this.dataHora = dataHora;
-	}
 
-	public Date converteDataHora() throws ParseException {
+	public static Date converteDataHora(String dataHora) throws ParseException {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		
-		return sdf.parse(this.dataHora);
+		return sdf.parse(dataHora);
 	}
 }

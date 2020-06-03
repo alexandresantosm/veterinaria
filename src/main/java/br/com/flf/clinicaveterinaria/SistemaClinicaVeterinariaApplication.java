@@ -75,10 +75,11 @@ public class SistemaClinicaVeterinariaApplication implements CommandLineRunner {
 		
 		veterinarioRepository.saveAll(Arrays.asList(v1,v2,v3));
 		
-		Consulta con1 = new Consulta(null, new FormataDataHora("05/05/2020 13:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Exame urina", a1, v1);
-		Consulta con2 = new Consulta(null, new FormataDataHora("05/12/2019 10:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Raio-X tórax", a2, v1);
-		Consulta con3 = new Consulta(null, new FormataDataHora("25/05/2020 09:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Vacina gripe", a3, v2);
-		Consulta con4 = new Consulta(null, new FormataDataHora("05/11/2018 14:45").converteDataHora(), "Av. Rui Barbosa, 100, Aldeota", "Cirurgia rabo", a4, v3);
+		new FormataDataHora();
+		Consulta con1 = new Consulta(null, FormataDataHora.converteDataHora("05/05/2020 13:45"), "Av. Rui Barbosa, 100, Aldeota", "Exame urina", a1, v1);
+		Consulta con2 = new Consulta(null, FormataDataHora.converteDataHora("05/12/2019 10:45"), "Av. Rui Barbosa, 100, Aldeota", "Raio-X tórax", a2, v1);
+		Consulta con3 = new Consulta(null, FormataDataHora.converteDataHora("25/05/2020 09:45"), "Av. Rui Barbosa, 100, Aldeota", "Vacina gripe", a3, v2);
+		Consulta con4 = new Consulta(null, FormataDataHora.converteDataHora("05/11/2018 14:45"), "Av. Rui Barbosa, 100, Aldeota", "Cirurgia rabo", a4, v3);
 		
 		consultaRepository.saveAll(Arrays.asList(con1,con2,con3,con4));
 		
